@@ -3,6 +3,7 @@ import { Header } from "@/components/Header";
 import { ProductCard } from "@/components/ProductCard";
 import { EcoImpactDashboard } from "@/components/EcoImpactDashboard";
 import { RewardsSection } from "@/components/RewardsSection";
+import { PackageReturnSection } from "@/components/PackageReturnSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Index = () => {
@@ -87,10 +88,11 @@ const Index = () => {
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="products" className="space-y-8">
-          <TabsList className="grid w-full grid-cols-3 max-w-md mx-auto">
+          <TabsList className="grid w-full grid-cols-4 max-w-lg mx-auto">
             <TabsTrigger value="products">Products</TabsTrigger>
             <TabsTrigger value="impact">My Impact</TabsTrigger>
             <TabsTrigger value="rewards">Rewards</TabsTrigger>
+            <TabsTrigger value="returns">Returns</TabsTrigger>
           </TabsList>
 
           <TabsContent value="products" className="space-y-8">
@@ -110,6 +112,10 @@ const Index = () => {
 
           <TabsContent value="rewards">
             <RewardsSection />
+          </TabsContent>
+
+          <TabsContent value="returns">
+            <PackageReturnSection />
           </TabsContent>
         </Tabs>
       </main>

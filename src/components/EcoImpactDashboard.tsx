@@ -2,20 +2,22 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-import { Leaf, Award, Users, Recycle, TreePine, Droplets } from "lucide-react";
+import { Leaf, Award, Users, Recycle, TreePine, Package } from "lucide-react";
 
 export const EcoImpactDashboard = () => {
   const userStats = {
     ecoPoints: 245,
     plasticSaved: 2.3,
     ordersWithEcoPackaging: 12,
+    packagesReturned: 8,
     nextRewardAt: 300
   };
 
   const communityStats = {
     totalPlasticSaved: 12000,
     totalUsers: 15420,
-    ecoOrdersThisMonth: 3240
+    ecoOrdersThisMonth: 3240,
+    packagesReturnedCommunity: 25680
   };
 
   const progressToNextReward = (userStats.ecoPoints / userStats.nextRewardAt) * 100;
@@ -29,7 +31,7 @@ export const EcoImpactDashboard = () => {
           Your Eco Impact
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
           <Card className="bg-gradient-to-r from-green-50 to-blue-50">
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
@@ -62,6 +64,18 @@ export const EcoImpactDashboard = () => {
                   <p className="text-2xl font-bold text-purple-600">{userStats.ordersWithEcoPackaging}</p>
                 </div>
                 <TreePine className="h-8 w-8 text-purple-600" />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-gradient-to-r from-orange-50 to-red-50">
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-gray-600 mb-1">Packages Returned</p>
+                  <p className="text-2xl font-bold text-orange-600">{userStats.packagesReturned}</p>
+                </div>
+                <Package className="h-8 w-8 text-orange-600" />
               </div>
             </CardContent>
           </Card>
@@ -109,7 +123,7 @@ export const EcoImpactDashboard = () => {
               <p className="text-green-100">Join {communityStats.totalUsers.toLocaleString()} eco-warriors</p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <div className="text-center">
                 <div className="flex items-center justify-center mb-2">
                   <Recycle className="h-8 w-8" />
@@ -132,6 +146,14 @@ export const EcoImpactDashboard = () => {
                 </div>
                 <p className="text-2xl font-bold">{communityStats.ecoOrdersThisMonth.toLocaleString()}</p>
                 <p className="text-sm text-green-100">Eco Orders This Month</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="flex items-center justify-center mb-2">
+                  <Package className="h-8 w-8" />
+                </div>
+                <p className="text-2xl font-bold">{communityStats.packagesReturnedCommunity.toLocaleString()}</p>
+                <p className="text-sm text-green-100">Packages Returned</p>
               </div>
             </div>
           </CardContent>
