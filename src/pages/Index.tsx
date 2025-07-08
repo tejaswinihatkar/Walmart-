@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Carousel } from "@/components/HomepageCarousel";
 import { CategorySection } from "@/components/CategorySection";
 import { PopularProducts } from "@/components/PopularProducts";
+import { ReturnPackagingAd } from "@/components/ReturnPackagingAd";
 
 const Index = () => {
   const products = [
@@ -94,6 +95,9 @@ const Index = () => {
         <div className="mb-6">
           <Carousel />
         </div>
+        
+        {/* New Return Packaging Ad - placed prominently between carousel and categories */}
+        <ReturnPackagingAd />
         
         {/* Category Section */}
         <div className="mb-8">
