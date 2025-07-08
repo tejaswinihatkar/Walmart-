@@ -5,6 +5,9 @@ import { EcoImpactDashboard } from "@/components/EcoImpactDashboard";
 import { RewardsSection } from "@/components/RewardsSection";
 import { PackageReturnSection } from "@/components/PackageReturnSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Carousel } from "@/components/HomepageCarousel";
+import { CategorySection } from "@/components/CategorySection";
+import { PopularProducts } from "@/components/PopularProducts";
 
 const Index = () => {
   const products = [
@@ -16,7 +19,9 @@ const Index = () => {
       isEcoEligible: true,
       ecoSavings: 5,
       ecoPoints: 10,
-      plasticSaved: "15g"
+      plasticSaved: "15g",
+      rating: 4.5,
+      reviews: 128
     },
     {
       id: "2", 
@@ -26,7 +31,9 @@ const Index = () => {
       isEcoEligible: true,
       ecoSavings: 3,
       ecoPoints: 8,
-      plasticSaved: "12g"
+      plasticSaved: "12g",
+      rating: 4.2,
+      reviews: 95
     },
     {
       id: "3",
@@ -36,7 +43,9 @@ const Index = () => {
       isEcoEligible: true,
       ecoSavings: 10,
       ecoPoints: 20,
-      plasticSaved: "35g"
+      plasticSaved: "35g",
+      rating: 4.7,
+      reviews: 210
     },
     {
       id: "4",
@@ -46,7 +55,9 @@ const Index = () => {
       isEcoEligible: true,
       ecoSavings: 15,
       ecoPoints: 25,
-      plasticSaved: "50g"
+      plasticSaved: "50g",
+      rating: 4.3,
+      reviews: 156
     },
     {
       id: "5",
@@ -56,7 +67,9 @@ const Index = () => {
       isEcoEligible: true,
       ecoSavings: 7,
       ecoPoints: 12,
-      plasticSaved: "18g"
+      plasticSaved: "18g",
+      rating: 4.6,
+      reviews: 176
     },
     {
       id: "6",
@@ -66,7 +79,9 @@ const Index = () => {
       isEcoEligible: true,
       ecoSavings: 8,
       ecoPoints: 15,
-      plasticSaved: "25g"
+      plasticSaved: "25g",
+      rating: 4.1,
+      reviews: 89
     }
   ];
 
@@ -74,22 +89,26 @@ const Index = () => {
     <div className="min-h-screen bg-gray-50">
       <Header />
       
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Choose <span className="text-green-600">Eco-Friendly</span>, Save More
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Every sustainable choice you make earns rewards and helps protect our planet. 
-            Join thousands of eco-warriors making a difference!
-          </p>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        {/* Homepage Carousel */}
+        <div className="mb-6">
+          <Carousel />
+        </div>
+        
+        {/* Category Section */}
+        <div className="mb-8">
+          <CategorySection />
+        </div>
+        
+        {/* Popular Products Section */}
+        <div className="mb-8">
+          <PopularProducts />
         </div>
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="products" className="space-y-8">
           <TabsList className="grid w-full grid-cols-4 max-w-lg mx-auto">
-            <TabsTrigger value="products">Products</TabsTrigger>
+            <TabsTrigger value="products">Eco Products</TabsTrigger>
             <TabsTrigger value="impact">My Impact</TabsTrigger>
             <TabsTrigger value="rewards">Rewards</TabsTrigger>
             <TabsTrigger value="returns">Returns</TabsTrigger>
@@ -97,8 +116,11 @@ const Index = () => {
 
           <TabsContent value="products" className="space-y-8">
             <div>
-              <h2 className="text-2xl font-bold mb-6">Featured Eco-Products</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-2xl font-bold">Featured Eco-Products</h2>
+                <button className="text-blue-600 hover:underline text-sm font-medium">View All</button>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {products.map((product) => (
                   <ProductCard key={product.id} {...product} />
                 ))}
@@ -119,6 +141,62 @@ const Index = () => {
           </TabsContent>
         </Tabs>
       </main>
+      
+      {/* Footer */}
+      <footer className="bg-gray-800 text-white mt-12 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-lg font-bold mb-4">About EcoMart</h3>
+              <ul className="space-y-2">
+                <li><a href="#" className="text-gray-300 hover:text-white">About Us</a></li>
+                <li><a href="#" className="text-gray-300 hover:text-white">Careers</a></li>
+                <li><a href="#" className="text-gray-300 hover:text-white">EcoChoice Initiative</a></li>
+                <li><a href="#" className="text-gray-300 hover:text-white">Press</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-bold mb-4">Help</h3>
+              <ul className="space-y-2">
+                <li><a href="#" className="text-gray-300 hover:text-white">Payments</a></li>
+                <li><a href="#" className="text-gray-300 hover:text-white">Shipping</a></li>
+                <li><a href="#" className="text-gray-300 hover:text-white">Returns & Refunds</a></li>
+                <li><a href="#" className="text-gray-300 hover:text-white">FAQ</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-bold mb-4">Consumer Policy</h3>
+              <ul className="space-y-2">
+                <li><a href="#" className="text-gray-300 hover:text-white">Terms of Use</a></li>
+                <li><a href="#" className="text-gray-300 hover:text-white">Privacy</a></li>
+                <li><a href="#" className="text-gray-300 hover:text-white">Security</a></li>
+                <li><a href="#" className="text-gray-300 hover:text-white">Sitemap</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-bold mb-4">Connect With Us</h3>
+              <ul className="space-y-2">
+                <li><a href="#" className="text-gray-300 hover:text-white">Facebook</a></li>
+                <li><a href="#" className="text-gray-300 hover:text-white">Twitter</a></li>
+                <li><a href="#" className="text-gray-300 hover:text-white">Instagram</a></li>
+                <li><a href="#" className="text-gray-300 hover:text-white">YouTube</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-700 mt-8 pt-6 flex flex-col md:flex-row justify-between">
+            <p className="text-gray-400">© 2025 EcoMart. All rights reserved.</p>
+            <div className="flex space-x-4 mt-4 md:mt-0">
+              <img src="https://images.unsplash.com/photo-1588964895597-cfccd6e2dbf9?w=30&h=20&fit=crop" alt="Payment Method" className="h-5" />
+              <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=30&h=20&fit=crop" alt="Payment Method" className="h-5" />
+              <img src="https://images.unsplash.com/photo-1601307666167-8879e7eb18dd?w=30&h=20&fit=crop" alt="Payment Method" className="h-5" />
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
