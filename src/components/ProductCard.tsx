@@ -12,6 +12,7 @@ interface ProductCardProps {
   id: string;
   name: string;
   price: number;
+  originalPrice?: number;
   image: string;
   isEcoEligible: boolean;
   ecoSavings?: number;
@@ -19,19 +20,27 @@ interface ProductCardProps {
   plasticSaved?: string;
   rating?: number;
   reviews?: number;
+  category?: string;
+  brand?: string;
+  discount?: number;
+  features?: string[];
 }
 
 export const ProductCard = ({ 
   id, 
   name, 
-  price, 
+  price,
+  originalPrice,
   image, 
   isEcoEligible, 
   ecoSavings = 5, 
   ecoPoints = 10,
   plasticSaved = "20g",
   rating = 4.2,
-  reviews = 120
+  reviews = 120,
+  brand,
+  discount,
+  features = []
 }: ProductCardProps) => {
   const [packagingType, setPackagingType] = useState("standard");
   const { toast } = useToast();
@@ -73,6 +82,13 @@ export const ProductCard = ({
               </Badge>
             </div>
           )}
+          {discount && (
+            <div className="absolute top-2 left-2 mt-8">
+              <Badge className="bg-red-500 hover:bg-red-600 text-white">
+                {discount}% OFF
+              </Badge>
+            </div>
+          )}
           <button 
             onClick={handleWishlist}
             className="absolute top-2 right-2 p-1.5 bg-white/80 backdrop-blur-sm rounded-full shadow-sm"
@@ -83,6 +99,9 @@ export const ProductCard = ({
 
         {/* Product Info */}
         <div className="p-3">
+          {brand && (
+            <p className="text-xs text-gray-500 mb-1">{brand}</p>
+          )}
           <h3 className="font-medium text-sm mb-1 line-clamp-2 h-10">{name}</h3>
           
           {/* Ratings */}
@@ -97,14 +116,32 @@ export const ProductCard = ({
           {/* Pricing */}
           <div className="mb-3">
             <div className="flex items-center space-x-2">
-              <span className="text-lg font-bold">₹{packagingType === "eco" ? price - ecoSavings : price}</span>
-              {packagingType === "eco" && (
-                <span className="text-sm text-gray-500 line-through">₹{price}</span>
+              <span className="text-lg font-bold">
+                ₹{packagingType === "eco" ? price - ecoSavings : price}
+              </span>
+              {(originalPrice || packagingType === "eco") && (
+                <span className="text-sm text-gray-500 line-through">
+                  ₹{packagingType === "eco" ? price : originalPrice}
+                </span>
               )}
               {packagingType === "eco" && (
-                <span className="text-xs text-green-600 font-medium">{Math.round((ecoSavings / price) * 100)}% off</span>
+                <span className="text-xs text-green-600 font-medium">
+                  {Math.round((ecoSavings / price) * 100)}% off
+                </span>
+              )}
+              {originalPrice && packagingType !== "eco" && (
+                <span className="text-xs text-red-600 font-medium">
+                  {Math.round(((originalPrice - price) / originalPrice) * 100)}% off
+                </span>
               )}
             </div>
+            {features && features.length > 0 && (
+              <div className="mt-1">
+                <p className="text-xs text-gray-600 line-clamp-1">
+                  {features.slice(0, 2).join(" • ")}
+                </p>
+              </div>
+            )}
           </div>
 
           {/* Packaging Options */}

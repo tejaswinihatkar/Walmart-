@@ -1,4 +1,5 @@
 
+import { useState } from "react";
 import { Header } from "@/components/Header";
 import { ProductCard } from "@/components/ProductCard";
 import { EcoImpactDashboard } from "@/components/EcoImpactDashboard";
@@ -6,85 +7,46 @@ import { RewardsSection } from "@/components/RewardsSection";
 import { PackageReturnSection } from "@/components/PackageReturnSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Carousel } from "@/components/HomepageCarousel";
-import { CategorySection } from "@/components/CategorySection";
 import { PopularProducts } from "@/components/PopularProducts";
 import { ReturnPackagingAd } from "@/components/ReturnPackagingAd";
+import { Button } from "@/components/ui/button";
+import { products as allProducts, categories } from "@/data/products";
+import { Filter, Grid, List } from "lucide-react";
 
 const Index = () => {
-  const products = [
-    {
-      id: "1",
-      name: "Organic Whole Wheat Bread",
-      price: 45,
-      image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=300&fit=crop",
-      isEcoEligible: true,
-      ecoSavings: 5,
-      ecoPoints: 10,
-      plasticSaved: "15g",
-      rating: 4.5,
-      reviews: 128
-    },
-    {
-      id: "2", 
-      name: "Fresh Milk (1L)",
-      price: 35,
-      image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&h=300&fit=crop",
-      isEcoEligible: true,
-      ecoSavings: 3,
-      ecoPoints: 8,
-      plasticSaved: "12g",
-      rating: 4.2,
-      reviews: 95
-    },
-    {
-      id: "3",
-      name: "Eco-Friendly Detergent",
-      price: 120,
-      image: "https://images.unsplash.com/photo-1563453392212-326d32d2d3d6?w=400&h=300&fit=crop",
-      isEcoEligible: true,
-      ecoSavings: 10,
-      ecoPoints: 20,
-      plasticSaved: "35g",
-      rating: 4.7,
-      reviews: 210
-    },
-    {
-      id: "4",
-      name: "Organic Rice (5kg)",
-      price: 280,
-      image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&h=300&fit=crop",
-      isEcoEligible: true,
-      ecoSavings: 15,
-      ecoPoints: 25,
-      plasticSaved: "50g",
-      rating: 4.3,
-      reviews: 156
-    },
-    {
-      id: "5",
-      name: "Natural Honey",
-      price: 85,
-      image: "https://images.unsplash.com/photo-1587049633312-d628ae50a8ae?w=400&h=300&fit=crop",
-      isEcoEligible: true,
-      ecoSavings: 7,
-      ecoPoints: 12,
-      plasticSaved: "18g",
-      rating: 4.6,
-      reviews: 176
-    },
-    {
-      id: "6",
-      name: "Eco Paper Towels",
-      price: 65,
-      image: "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=400&h=300&fit=crop",
-      isEcoEligible: true,
-      ecoSavings: 8,
-      ecoPoints: 15,
-      plasticSaved: "25g",
-      rating: 4.1,
-      reviews: 89
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [sortBy, setSortBy] = useState("featured");
+
+  // Filter products based on selected category
+  const filteredProducts = selectedCategory === "all" 
+    ? allProducts 
+    : allProducts.filter(product => product.category === selectedCategory);
+
+  // Sort products
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortBy) {
+      case "price-low":
+        return a.price - b.price;
+      case "price-high":
+        return b.price - a.price;
+      case "rating":
+        return b.rating - a.rating;
+      case "popularity":
+        return b.reviews - a.reviews;
+      default:
+        return 0; // Keep original order for "featured"
     }
-  ];
+  });
+
+  const handleCategorySelect = (categoryId: string) => {
+    setSelectedCategory(categoryId);
+  };
+
+  const getCategoryName = () => {
+    const category = categories.find(cat => cat.id === selectedCategory);
+    return category ? category.name : "All Products";
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -99,15 +61,94 @@ const Index = () => {
         {/* New Return Packaging Ad - placed prominently between carousel and categories */}
         <ReturnPackagingAd />
         
-        {/* Category Section */}
-        <div className="mb-8">
-          <CategorySection />
-        </div>
-        
         {/* Popular Products Section */}
         <div className="mb-8">
           <PopularProducts />
         </div>
+
+        {/* Product Filters and Controls */}
+        <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+          <div className="flex items-center gap-4">
+            <h2 className="text-2xl font-bold">{getCategoryName()}</h2>
+            <span className="text-gray-500">({sortedProducts.length} products)</span>
+          </div>
+          
+          <div className="flex items-center gap-4">
+            {/* Sort dropdown */}
+            <div className="flex items-center gap-2">
+              <Filter className="h-4 w-4" />
+              <select 
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="border border-gray-300 rounded-md px-3 py-1 text-sm"
+              >
+                <option value="featured">Featured</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Customer Rating</option>
+                <option value="popularity">Popularity</option>
+              </select>
+            </div>
+
+            {/* View mode toggle */}
+            <div className="flex border border-gray-300 rounded-md overflow-hidden">
+              <Button
+                variant={viewMode === "grid" ? "default" : "ghost"}
+                size="sm"
+                onClick={() => setViewMode("grid")}
+                className="rounded-none"
+              >
+                <Grid className="h-4 w-4" />
+              </Button>
+              <Button
+                variant={viewMode === "list" ? "default" : "ghost"}
+                size="sm"
+                onClick={() => setViewMode("list")}
+                className="rounded-none"
+              >
+                <List className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Category Filter Pills */}
+        <div className="mb-6 flex flex-wrap gap-2">
+          {categories.map((category) => (
+            <Button
+              key={category.id}
+              variant={selectedCategory === category.id ? "default" : "outline"}
+              size="sm"
+              onClick={() => handleCategorySelect(category.id)}
+              className="rounded-full"
+            >
+              {category.name}
+            </Button>
+          ))}
+        </div>
+
+        {/* Products Grid */}
+        <div className={`mb-8 ${
+          viewMode === "grid" 
+            ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4" 
+            : "space-y-4"
+        }`}>
+          {sortedProducts.map((product) => (
+            <ProductCard key={product.id} {...product} />
+          ))}
+        </div>
+
+        {sortedProducts.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-gray-500 text-lg">No products found in this category.</p>
+            <Button 
+              onClick={() => setSelectedCategory("all")}
+              className="mt-4"
+            >
+              View All Products
+            </Button>
+          </div>
+        )}
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="products" className="space-y-8">
@@ -119,17 +160,7 @@ const Index = () => {
           </TabsList>
 
           <TabsContent value="products" className="space-y-8">
-            <div>
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold">Featured Eco-Products</h2>
-                <button className="text-blue-600 hover:underline text-sm font-medium">View All</button>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                {products.map((product) => (
-                  <ProductCard key={product.id} {...product} />
-                ))}
-              </div>
-            </div>
+            {/* Products are now shown above the tabs */}
           </TabsContent>
 
           <TabsContent value="impact">

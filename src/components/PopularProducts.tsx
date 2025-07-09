@@ -1,64 +1,24 @@
 
 import { Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { products } from "@/data/products";
 
-const popularProducts = [
-  {
-    id: "p1",
-    name: "Eco-Friendly Water Bottle",
-    price: 599,
-    originalPrice: 999,
-    discount: "40% off",
-    image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=300&h=300&fit=crop",
-    rating: 4.5,
-    reviews: 2345,
-    isEcoFriendly: true
-  },
-  {
-    id: "p2",
-    name: "Wireless Bluetooth Earbuds",
-    price: 1299,
-    originalPrice: 2499,
-    discount: "48% off",
-    image: "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=300&h=300&fit=crop",
-    rating: 4.3,
-    reviews: 1289,
-    isEcoFriendly: false
-  },
-  {
-    id: "p3",
-    name: "Bamboo Cutlery Set",
-    price: 349,
-    originalPrice: 599,
-    discount: "42% off",
-    image: "https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=300&h=300&fit=crop",
-    rating: 4.7,
-    reviews: 856,
-    isEcoFriendly: true
-  },
-  {
-    id: "p4",
-    name: "Smart Fitness Band",
-    price: 1999,
-    originalPrice: 3499,
-    discount: "43% off",
-    image: "https://images.unsplash.com/photo-1576243345690-4e4b79b63288?w=300&h=300&fit=crop",
-    rating: 4.4,
-    reviews: 3421,
-    isEcoFriendly: false
-  },
-  {
-    id: "p5",
-    name: "Reusable Coffee Cup",
-    price: 399,
-    originalPrice: 799,
-    discount: "50% off",
-    image: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=300&h=300&fit=crop",
-    rating: 4.8,
-    reviews: 1023,
-    isEcoFriendly: true
-  }
-];
+// Get top products with discounts for the popular section
+const popularProducts = products
+  .filter(product => product.discount && product.discount > 10)
+  .slice(0, 8)
+  .map(product => ({
+    id: product.id,
+    name: product.name,
+    price: product.price,
+    originalPrice: product.originalPrice || product.price + (product.price * (product.discount || 0) / 100),
+    discount: `${product.discount}% off`,
+    image: product.image,
+    rating: product.rating,
+    reviews: product.reviews,
+    isEcoFriendly: product.isEcoEligible,
+    brand: product.brand
+  }));
 
 export function PopularProducts() {
   return (
@@ -83,6 +43,9 @@ export function PopularProducts() {
             </div>
             
             <div className="p-3">
+              {product.brand && (
+                <p className="text-xs text-gray-500 mb-1">{product.brand}</p>
+              )}
               <h3 className="text-sm font-medium mb-1 line-clamp-2 h-10">{product.name}</h3>
               
               <div className="flex items-center space-x-1 mb-1">

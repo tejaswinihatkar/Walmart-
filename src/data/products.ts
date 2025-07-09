@@ -1,0 +1,461 @@
+export interface Product {
+  id: string;
+  name: string;
+  price: number;
+  originalPrice?: number;
+  image: string;
+  isEcoEligible: boolean;
+  ecoSavings: number;
+  ecoPoints: number;
+  plasticSaved: string;
+  rating: number;
+  reviews: number;
+  category: string;
+  brand?: string;
+  description?: string;
+  features?: string[];
+  discount?: number;
+}
+
+export const products: Product[] = [
+  // Mobiles
+  {
+    id: "mob1",
+    name: "iPhone 15 Pro",
+    price: 79900,
+    originalPrice: 84900,
+    image: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=400&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 500,
+    ecoPoints: 120,
+    plasticSaved: "45g",
+    rating: 4.8,
+    reviews: 2156,
+    category: "Mobiles",
+    brand: "Apple",
+    discount: 6,
+    features: ["A17 Pro chip", "48MP camera", "Titanium build"]
+  },
+  {
+    id: "mob2",
+    name: "Samsung Galaxy S24 Ultra",
+    price: 76999,
+    originalPrice: 82999,
+    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=400&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 600,
+    ecoPoints: 110,
+    plasticSaved: "38g",
+    rating: 4.7,
+    reviews: 1843,
+    category: "Mobiles",
+    brand: "Samsung",
+    discount: 7,
+    features: ["200MP camera", "S Pen included", "AI features"]
+  },
+  {
+    id: "mob3",
+    name: "OnePlus 12",
+    price: 64999,
+    originalPrice: 69999,
+    image: "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400&h=400&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 500,
+    ecoPoints: 95,
+    plasticSaved: "35g",
+    rating: 4.6,
+    reviews: 967,
+    category: "Mobiles",
+    brand: "OnePlus",
+    discount: 7,
+    features: ["Snapdragon 8 Gen 3", "100W charging", "Hasselblad camera"]
+  },
+
+  // Electronics
+  {
+    id: "elec1",
+    name: "Sony 65\" 4K OLED TV",
+    price: 149999,
+    originalPrice: 169999,
+    image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&h=400&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 2000,
+    ecoPoints: 250,
+    plasticSaved: "120g",
+    rating: 4.7,
+    reviews: 543,
+    category: "Electronics",
+    brand: "Sony",
+    discount: 12,
+    features: ["OLED display", "HDR10", "Smart TV"]
+  },
+  {
+    id: "elec2",
+    name: "JBL Bluetooth Speaker",
+    price: 4999,
+    originalPrice: 6999,
+    image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=400&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 200,
+    ecoPoints: 45,
+    plasticSaved: "25g",
+    rating: 4.4,
+    reviews: 1234,
+    category: "Electronics",
+    brand: "JBL",
+    discount: 29,
+    features: ["Waterproof", "12h battery", "Deep bass"]
+  },
+  {
+    id: "elec3",
+    name: "Canon EOS R6 Camera",
+    price: 189999,
+    originalPrice: 209999,
+    image: "https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?w=400&h=400&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 2000,
+    ecoPoints: 300,
+    plasticSaved: "85g",
+    rating: 4.8,
+    reviews: 324,
+    category: "Electronics",
+    brand: "Canon",
+    discount: 10,
+    features: ["Full-frame sensor", "4K video", "In-body stabilization"]
+  },
+
+  // Fashion
+  {
+    id: "fash1",
+    name: "Nike Air Max 270",
+    price: 12995,
+    originalPrice: 14995,
+    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 200,
+    ecoPoints: 65,
+    plasticSaved: "30g",
+    rating: 4.5,
+    reviews: 2876,
+    category: "Fashion",
+    brand: "Nike",
+    discount: 13,
+    features: ["Air cushioning", "Breathable mesh", "Durable sole"]
+  },
+  {
+    id: "fash2",
+    name: "Levi's 501 Original Jeans",
+    price: 3999,
+    originalPrice: 4999,
+    image: "https://images.unsplash.com/photo-1542272604-787c3835535d?w=400&h=400&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 100,
+    ecoPoints: 40,
+    plasticSaved: "15g",
+    rating: 4.3,
+    reviews: 1543,
+    category: "Fashion",
+    brand: "Levi's",
+    discount: 20,
+    features: ["Classic fit", "100% cotton", "Timeless design"]
+  },
+  {
+    id: "fash3",
+    name: "Adidas Ultraboost 22",
+    price: 17999,
+    originalPrice: 19999,
+    image: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=400&h=400&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 200,
+    ecoPoints: 75,
+    plasticSaved: "35g",
+    rating: 4.6,
+    reviews: 987,
+    category: "Fashion",
+    brand: "Adidas",
+    discount: 10,
+    features: ["Boost midsole", "Primeknit upper", "Continental rubber outsole"]
+  },
+
+  // Groceries
+  {
+    id: "groc1",
+    name: "Organic Whole Wheat Bread",
+    price: 45,
+    image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=300&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 5,
+    ecoPoints: 10,
+    plasticSaved: "15g",
+    rating: 4.5,
+    reviews: 128,
+    category: "Groceries",
+    brand: "Organic Valley",
+    features: ["100% organic", "No preservatives", "Whole grain"]
+  },
+  {
+    id: "groc2",
+    name: "Fresh Milk (1L)",
+    price: 35,
+    image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&h=300&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 3,
+    ecoPoints: 8,
+    plasticSaved: "12g",
+    rating: 4.2,
+    reviews: 95,
+    category: "Groceries",
+    brand: "Farm Fresh",
+    features: ["A2 milk", "Farm fresh", "Rich in calcium"]
+  },
+  {
+    id: "groc3",
+    name: "Organic Rice (5kg)",
+    price: 280,
+    image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&h=300&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 15,
+    ecoPoints: 25,
+    plasticSaved: "50g",
+    rating: 4.3,
+    reviews: 156,
+    category: "Groceries",
+    brand: "Nature's Best",
+    features: ["Organic certified", "Long grain", "Premium quality"]
+  },
+  {
+    id: "groc4",
+    name: "Natural Honey",
+    price: 85,
+    image: "https://images.unsplash.com/photo-1587049633312-d628ae50a8ae?w=400&h=300&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 7,
+    ecoPoints: 12,
+    plasticSaved: "18g",
+    rating: 4.6,
+    reviews: 176,
+    category: "Groceries",
+    brand: "Pure Bee",
+    features: ["Raw honey", "No added sugar", "Single origin"]
+  },
+
+  // Home
+  {
+    id: "home1",
+    name: "Eco Paper Towels",
+    price: 65,
+    image: "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=400&h=300&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 8,
+    ecoPoints: 15,
+    plasticSaved: "25g",
+    rating: 4.1,
+    reviews: 89,
+    category: "Home",
+    brand: "EcoClean",
+    features: ["Biodegradable", "Strong absorption", "Eco-friendly"]
+  },
+  {
+    id: "home2",
+    name: "Bamboo Bedsheet Set",
+    price: 2999,
+    originalPrice: 3999,
+    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&h=400&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 100,
+    ecoPoints: 80,
+    plasticSaved: "60g",
+    rating: 4.7,
+    reviews: 456,
+    category: "Home",
+    brand: "Bamboo Comfort",
+    discount: 25,
+    features: ["Hypoallergenic", "Temperature regulating", "Sustainable"]
+  },
+  {
+    id: "home3",
+    name: "Smart LED Bulbs (4-pack)",
+    price: 1299,
+    originalPrice: 1599,
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 50,
+    ecoPoints: 35,
+    plasticSaved: "20g",
+    rating: 4.4,
+    reviews: 789,
+    category: "Home",
+    brand: "SmartHome",
+    discount: 19,
+    features: ["WiFi enabled", "16M colors", "Energy efficient"]
+  },
+
+  // Appliances
+  {
+    id: "app1",
+    name: "Eco-Friendly Detergent",
+    price: 120,
+    image: "https://images.unsplash.com/photo-1563453392212-326d32d2d3d6?w=400&h=300&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 10,
+    ecoPoints: 20,
+    plasticSaved: "35g",
+    rating: 4.7,
+    reviews: 210,
+    category: "Appliances",
+    brand: "EcoWash",
+    features: ["Plant-based", "Concentrated formula", "Biodegradable"]
+  },
+  {
+    id: "app2",
+    name: "Energy Star Refrigerator",
+    price: 45999,
+    originalPrice: 52999,
+    image: "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=400&h=400&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 700,
+    ecoPoints: 400,
+    plasticSaved: "200g",
+    rating: 4.6,
+    reviews: 234,
+    category: "Appliances",
+    brand: "EcoFrost",
+    discount: 13,
+    features: ["Energy Star certified", "Inverter technology", "Large capacity"]
+  },
+  {
+    id: "app3",
+    name: "Smart Washing Machine",
+    price: 35999,
+    originalPrice: 39999,
+    image: "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=400&h=400&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 400,
+    ecoPoints: 300,
+    plasticSaved: "150g",
+    rating: 4.5,
+    reviews: 567,
+    category: "Appliances",
+    brand: "SmartWash",
+    discount: 10,
+    features: ["Wi-Fi enabled", "Auto dosing", "Steam wash"]
+  },
+
+  // Laptops
+  {
+    id: "lap1",
+    name: "MacBook Air M3",
+    price: 114900,
+    originalPrice: 124900,
+    image: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=400&h=400&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 1000,
+    ecoPoints: 200,
+    plasticSaved: "80g",
+    rating: 4.8,
+    reviews: 1567,
+    category: "Laptops",
+    brand: "Apple",
+    discount: 8,
+    features: ["M3 chip", "18h battery", "Liquid Retina display"]
+  },
+  {
+    id: "lap2",
+    name: "Dell XPS 13",
+    price: 89999,
+    originalPrice: 99999,
+    image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=400&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 1000,
+    ecoPoints: 180,
+    plasticSaved: "75g",
+    rating: 4.6,
+    reviews: 892,
+    category: "Laptops",
+    brand: "Dell",
+    discount: 10,
+    features: ["Intel Core i7", "InfinityEdge display", "Premium build"]
+  },
+  {
+    id: "lap3",
+    name: "ASUS ROG Strix G15",
+    price: 79999,
+    originalPrice: 89999,
+    image: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=400&h=400&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 1000,
+    ecoPoints: 160,
+    plasticSaved: "70g",
+    rating: 4.5,
+    reviews: 678,
+    category: "Laptops",
+    brand: "ASUS",
+    discount: 11,
+    features: ["RTX 4060", "144Hz display", "RGB keyboard"]
+  },
+
+  // Audio
+  {
+    id: "aud1",
+    name: "Sony WH-1000XM5",
+    price: 29990,
+    originalPrice: 34990,
+    image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 500,
+    ecoPoints: 120,
+    plasticSaved: "45g",
+    rating: 4.8,
+    reviews: 2345,
+    category: "Audio",
+    brand: "Sony",
+    discount: 14,
+    features: ["Industry-leading noise cancelling", "30h battery", "Hi-Res audio"]
+  },
+  {
+    id: "aud2",
+    name: "AirPods Pro (3rd Gen)",
+    price: 24900,
+    originalPrice: 27900,
+    image: "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=400&h=400&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 300,
+    ecoPoints: 100,
+    plasticSaved: "35g",
+    rating: 4.7,
+    reviews: 3456,
+    category: "Audio",
+    brand: "Apple",
+    discount: 11,
+    features: ["Adaptive transparency", "Spatial audio", "MagSafe charging"]
+  },
+  {
+    id: "aud3",
+    name: "Marshall Acton III",
+    price: 24999,
+    originalPrice: 29999,
+    image: "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=400&h=400&fit=crop",
+    isEcoEligible: true,
+    ecoSavings: 500,
+    ecoPoints: 90,
+    plasticSaved: "40g",
+    rating: 4.6,
+    reviews: 567,
+    category: "Audio",
+    brand: "Marshall",
+    discount: 17,
+    features: ["Bluetooth 5.2", "Multi-host connectivity", "Classic design"]
+  }
+];
+
+export const categories = [
+  { id: "all", name: "All Products" },
+  { id: "Mobiles", name: "Mobiles" },
+  { id: "Electronics", name: "Electronics" },
+  { id: "Fashion", name: "Fashion" },
+  { id: "Groceries", name: "Groceries" },
+  { id: "Home", name: "Home" },
+  { id: "Appliances", name: "Appliances" },
+  { id: "Laptops", name: "Laptops" },
+  { id: "Audio", name: "Audio" }
+];
