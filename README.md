@@ -1,73 +1,145 @@
-# Welcome to your Lovable project
+# 🛒 Walmart EcoChoice Commerce Hub
 
-## Project info
+Enhanced e-commerce platform with 25+ products and working category filtering, built with modern web technologies.
 
-**URL**: https://lovable.dev/projects/23709bc5-dd6e-403f-9360-c8fa7ca69c27
+## ✨ Features
 
-## How can I edit this code?
+- **🛍️ 25+ Products** across 8 categories (Mobiles, Electronics, Fashion, Groceries, Home, Appliances, Laptops, Audio)
+- **🏷️ Category Filtering** with clean button interface
+- **💰 Dynamic Pricing** with discounts and original price display
+- **⭐ Product Ratings & Reviews** with real-world data
+- **🔄 Sorting Options** (Featured, Price, Rating, Popularity)
+- **📱 Responsive Design** with grid/list view modes
+- **🌱 Eco-Friendly Focus** with sustainable packaging options
+- **🎯 Professional UI** similar to Amazon/Flipkart experience
 
-There are several ways of editing your application.
+## 🛠️ Technologies Used
 
-**Use Lovable**
+- **Frontend**: React + TypeScript
+- **Styling**: Tailwind CSS + shadcn/ui
+- **Build Tool**: Vite
+- **Icons**: Lucide React
+- **State Management**: React Hooks
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/23709bc5-dd6e-403f-9360-c8fa7ca69c27) and start prompting.
+## 🚀 Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
+- Node.js 18+ installed
+- npm or yarn package manager
 
-**Use your preferred IDE**
+### Installation
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+```bash
+# Clone the repository
+git clone https://github.com/tejaswinihatkar/Walmart-.git
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+# Navigate to project directory
+cd Walmart-
 
-Follow these steps:
+# Install dependencies
+npm install
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The application will be available at `http://localhost:5173`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📦 Project Structure
 
-**Use GitHub Codespaces**
+```
+src/
+├── components/          # Reusable UI components
+│   ├── ui/             # shadcn/ui components
+│   ├── ProductCard.tsx # Individual product display
+│   ├── Header.tsx      # Navigation header
+│   └── ...
+├── data/               # Product data and types
+│   └── products.ts     # Product catalog with 25+ items
+├── pages/              # Main application pages
+│   └── Index.tsx       # Homepage with product grid
+└── hooks/              # Custom React hooks
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```
 
-## What technologies are used for this project?
+## 🎨 Key Components
 
-This project is built with:
+### ProductCard
+- Displays product information with brand, pricing, and ratings
+- Shows discount badges and eco-friendly indicators
+- Includes wishlist and cart functionality
+- Responsive design for different screen sizes
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Category Filtering
+- Clean button interface for category selection
+- Real-time product filtering
+- Dynamic product count display
+- Works across all 8 product categories
 
-## How can I deploy this project?
+### Sorting & Views
+- Multiple sorting options (price, rating, popularity)
+- Grid and list view modes
+- Professional e-commerce layout
 
-Simply open [Lovable](https://lovable.dev/projects/23709bc5-dd6e-403f-9360-c8fa7ca69c27) and click on Share -> Publish.
+## 📊 Product Categories
 
-## Can I connect a custom domain to my Lovable project?
+1. **📱 Mobiles** - iPhone, Samsung, OnePlus
+2. **📺 Electronics** - TVs, Speakers, Cameras
+3. **👕 Fashion** - Shoes, Clothing, Accessories
+4. **🥖 Groceries** - Organic foods, Fresh produce
+5. **🏠 Home** - Furniture, Decor, Utilities
+6. **🔌 Appliances** - Kitchen, Laundry, Cleaning
+7. **💻 Laptops** - MacBook, Dell, ASUS
+8. **🎧 Audio** - Headphones, Speakers, Earbuds
 
-Yes, you can!
+## 🌱 Eco-Friendly Features
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+- Sustainable packaging options
+- Plastic waste reduction tracking
+- Eco-points reward system
+- Return packaging program
+- Environmental impact dashboard
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 📱 Responsive Design
+
+- Mobile-first approach
+- Tablet and desktop optimized
+- Touch-friendly interface
+- Cross-browser compatibility
+
+## 🚀 Deployment
+
+The project can be deployed to:
+- Vercel
+- Netlify
+- GitHub Pages
+- Any static hosting service
+
+```bash
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 👥 Author
+
+**Tejaswini Hatkar**
+- GitHub: [@tejaswinihatkar](https://github.com/tejaswinihatkar)
+
+---
+
+⭐ **Star this repository if you found it helpful!**
